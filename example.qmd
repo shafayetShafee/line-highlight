@@ -7,7 +7,7 @@ filters:
 
 ## Example 01
 
-Here we have highlighted line number 2 and 4 to 5 and have also added line numbers at the left side using `numberLines` class.
+Here we have highlighted line number 2 and 4 to 5 and have also added line numbers at the left side using `numberLines` class and most importantly, **we must add `highlight` class to implement line highlighting in this chunk**
 
 ```{r}
 #| message: false
@@ -24,7 +24,7 @@ iris |>
 
 ## More Example (without line Number)
 
-Here we have just highlighted the second line.
+Here we have just highlighted the second line and again, **we must add `highlight` source-class to implement line highlighting in this chunk**
 
 Add `group_by()`:
 

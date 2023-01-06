@@ -1,13 +1,12 @@
 # Line-highlight Extension For Quarto
 
-_TODO_: Add a short description of your extension.
+Quarto Extension to implement code line highlighting for HTML documents similar as how [`code-line-numbers`](https://quarto.org/docs/presentations/revealjs/index.html#line-highlighting) works for RevealJs output.
 
 ## Installing
 
-_TODO_: Replace the `<github-organization>` with your GitHub organization.
 
 ```bash
-quarto add <github-organization>/line-highlight
+quarto add shafayetShafee/line-highlight
 ```
 
 This will install the extension under the `_extensions` subdirectory.
@@ -15,7 +14,21 @@ If you're using version control, you will want to check in this directory.
 
 ## Using
 
-_TODO_: Describe how to use your extension.
+Here we have highlighted the fourth line using `highlight-line-numbers: "4"` and **we must add `highlight` source-class to implement line highlighting in this chunk**
+
+
+```{r}
+#| class-source: "highlight"
+#| highlight-line-numbers: "4"
+
+library(dplyr)
+
+iris |> 
+  group_by(Species) |> 
+  summarize(mean(Sepal.Length))
+```
+
+For a detail example, see below.
 
 ## Example
 
