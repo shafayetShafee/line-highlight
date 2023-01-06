@@ -1,0 +1,38 @@
+---
+title: "Code Line Number(s) Highlight in html"
+format: html
+filters:
+  - line-highlight
+---
+
+## Example 01
+
+Here we have highlighted line number 2 and 4 to 5 and have also added line numbers at the left side using `numberLines` class.
+
+```{r}
+#| message: false
+#| class-source: "highlight numberLines"
+#| highlight-line-numbers: "2,4-5"
+
+# library call
+library(dplyr)
+
+# code
+iris |> 
+  summarize(mean(Sepal.Length))
+```
+
+## More Example (without line Number)
+
+Here we have just highlighted the second line.
+
+Add `group_by()`:
+
+```{r}
+#| class-source: "highlight"
+#| highlight-line-numbers: "2"
+
+iris |> 
+  group_by(Species) |> 
+  summarize(mean(Sepal.Length))
+```

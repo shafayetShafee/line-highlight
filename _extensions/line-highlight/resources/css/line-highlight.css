@@ -1,0 +1,12 @@
+/*
+modified and reduced from
+https://github.com/quarto-dev/quarto-cli/tree/main/src/resources/formats/revealjs/plugins/line-highlight
+*/
+
+div.sourceCode
+pre
+code.has-line-highlights
+> span:not(.highlight-line) {
+  opacity: 0.4;
+}
+
