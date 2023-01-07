@@ -10,16 +10,27 @@ local function ensureHtmlDeps()
 end
 
 
-function highlight(line_number)
-  local highlighter = {
+local function highlight_source(line_number)
+  local source_highlighter = {
+    CodeBlock = function(block)
+      block.attributes["data-code-line-numbers"] = line_number
+      return block
+    end
+    }
+  return source_highlighter
+end
+
+
+local function highlight_output(line_number)
+  local output_highlighter = {
     CodeBlock = function(block)
       if block.classes:includes('highlight') then
         block.attributes["data-code-line-numbers"] = line_number
         return block
       end
     end
-    }
-  return highlighter
+  }
+  return output_highlighter
 end
 
 
@@ -27,8 +38,11 @@ function Div(el)
   if FORMAT == 'html' then
     ensureHtmlDeps()
     if el.classes:includes('cell') then
-      line_number = tostring(el.attributes["highlight-line-numbers"])
-      return el:walk(highlight(line_number))
+      source_line_number = tostring(el.attributes["source-line-numbers"])
+      output_line_number = tostring(el.attributes["output-line-numbers"])
+      local div = el:walk(highlight_source(source_line_number))
+      div = div:walk(highlight_output(output_line_number))
+      return div
     end
   end
 end
