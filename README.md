@@ -47,7 +47,7 @@ iris |>
 ```
 ~~~
 
-<img src="example-images/line-highlight01.png" alt="Example-01" width="500" />
+<img src="example-images/line-highlight01.png" alt="Example-01" width="600" />
 
 #### Example 02 (with source code line number)
 
@@ -78,7 +78,7 @@ iris |>
 ```
 ~~~
 
-<img src="example-images/line-highlight02.png" alt="Example-02" width="500" />
+<img src="example-images/line-highlight02.png" alt="Example-02" width="600" />
 
 ### Highlighting Output Line Numbers
 
@@ -112,7 +112,7 @@ mtcars |>
 ```
 ~~~
 
-<img src="example-images/line-highlight03.png" alt="Example" width="500" />
+<img src="example-images/line-highlight03.png" alt="Example" width="600" />
 
 
 For a complete compilable `qmd` file with these example,
