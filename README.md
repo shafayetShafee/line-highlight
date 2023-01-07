@@ -47,11 +47,7 @@ iris |>
 ```
 ~~~
 
----
-
-![example-01](example-images/line-highlight01.png)
-
----
+<img src="example-images/line-highlight01.png" alt="Example-01" width="200" />
 
 #### Example 02 (with source code line number)
 
@@ -82,18 +78,14 @@ iris |>
 ```
 ~~~
 
----
+<img src="example-images/line-highlight02.png" alt="Example-02" width="200" />
 
-![example-02](example-images/line-highlight02.png)
-
----
-
-## Highlighting Output Line Numbers
+### Highlighting Output Line Numbers
 
 Highlighting output line numbers a bit tricky. To enable output line number highlighting, we need to use both output class `highlight` and `numberLines` along with `output-line-numbers`.
 
 
-#### Example 01
+#### Example
 
 So to highlight second line of output, we use `output-line-numbers: "2"` and `class-output: "highlight numberLines"` (Sorry couldn't make it any more easier :D :p).
 
@@ -120,11 +112,7 @@ mtcars |>
 ```
 ~~~
 
----
-
-![example-03](example-images/line-highlight03.png)
-
----
+<img src="example-images/line-highlight03.png" alt="Example" width="200" />
 
 
 For a complete compilable `qmd` file with these example,
