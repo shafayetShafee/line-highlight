@@ -1,6 +1,6 @@
 # Line-highlight Extension For Quarto
 
-Quarto Extension to implement source code line highlighting and output line highlighting for HTML documents (`format: html`) similar as how [`code-line-numbers`](https://quarto.org/docs/presentations/revealjs/index.html#line-highlighting) works for RevealJs output.
+Quarto Extension to implement source code line highlighting and output line highlighting for HTML documents (`format: html`) similar as how [`code-line-numbers`](https://quarto.org/docs/reference/formats/html.html#code) works for RevealJs output.
 
 ## Installing
 
@@ -29,7 +29,7 @@ filters:
 
 #### Example 01
 
-Suppose we want to highlight the second line of the following code chunk, to do that, we simply use, `source-line-numbers: "2"`.
+Suppose we want to highlight the second line of a code chunk, to do that, we simply need to use the chunk option, `source-line-numbers: "2"` for that chunk.
 
 ~~~
 ---
@@ -53,7 +53,7 @@ iris |>
 
 Also, having the source code line numbered in such case would be helpful. We can do that by using source class `numberLines` (i.e. `#| class-source: "numberLines"`).
 
-Here we have highlighted line number 2 and 6 to 7 and have also added line numbers at the left side using `numberLines` source-class.
+Here we have highlighted line number 2 and 6 to 7 and have also enabled source code line numbering using `numberLines` source-class.
 
 ~~~
 ---
