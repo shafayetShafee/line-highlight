@@ -32,6 +32,13 @@ filters:
 Suppose we want to highlight the second line of the following code chunk, to do that, we simply use, `source-line-numbers: "2"`.
 
 ~~~
+---
+title: "line highlighting"
+format: html
+filters:
+  - line-highlight
+---
+
 ```{r}
 #| source-line-numbers: "2"
 
@@ -40,6 +47,11 @@ iris |>
 ```
 ~~~
 
+---
+
+![example-01](example-images/line-highlight01.png)
+
+---
 
 #### Example 02 (with source code line number)
 
@@ -48,6 +60,13 @@ Also, having the source code line numbered in such case would be helpful. We can
 Here we have highlighted line number 2 and 6 to 7 and have also added line numbers at the left side using `numberLines` source-class.
 
 ~~~
+---
+title: "line highlighting"
+format: html
+filters:
+  - line-highlight
+---
+
 ```{r}
 #| message: false
 #| class-source: "numberLines"
@@ -63,6 +82,12 @@ iris |>
 ```
 ~~~
 
+---
+
+![example-02](example-images/line-highlight02.png)
+
+---
+
 ## Highlighting Output Line Numbers
 
 Highlighting output line numbers a bit tricky. To enable output line number highlighting, we need to use both output class `highlight` and `numberLines` along with `output-line-numbers`.
@@ -73,10 +98,20 @@ Highlighting output line numbers a bit tricky. To enable output line number high
 So to highlight second line of output, we use `output-line-numbers: "2"` and `class-output: "highlight numberLines"` (Sorry couldn't make it any more easier :D :p).
 
 ~~~
+---
+title: "line highlighting"
+format: html
+filters:
+  - line-highlight
+---
+
 ```{r}
-#| source-line-numbers: "1,3"
+#| message: false
+#| source-line-numbers: "1,4"
 #| class-output: "highlight numberLines"
 #| output-line-numbers: "2"
+
+library(dplyr)
 
 mtcars |> 
   summarize(
@@ -85,10 +120,19 @@ mtcars |>
 ```
 ~~~
 
+---
 
-For a complete compilable `qmd` file with these example and to see how it looks like see below. 
+![example-03](example-images/line-highlight03.png)
 
-## Rendered Output
+---
 
-Here is the source code for a minimal example: [example.qmd](example.qmd) and the rendered HTML document [example.html](https://shafayetshafee.github.io/line-highllight/example.html)
 
+For a complete compilable `qmd` file with these example,
+
+- The source code: [example.qmd](example.qmd) 
+- The rendered HTML document [example.html](https://shafayetshafee.github.io/line-highlight/example.html)
+
+
+## Acknowledgement
+
+The javascript code and css for implementing ling highlighting is taken (modified and reduced) from the [Quarto Github Repo](https://github.com/quarto-dev/quarto-cli/tree/main/src/resources/formats/revealjs/plugins/line-highlight).
