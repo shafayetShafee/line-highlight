@@ -23,7 +23,7 @@ filters:
   - line-highlight
 ---
 ```
-
+**Please Note that, this filter extension requires Quarto v1.2 at least to work.**
 
 ### Highlighting Source Line Numbers
 
