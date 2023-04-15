@@ -1,6 +1,6 @@
 # Line-highlight Extension For Quarto
 
-Quarto Extension to implement source code line highlighting and output line highlighting for HTML documents (`format: html`) similar as how [`code-line-numbers`](https://quarto.org/docs/reference/formats/html.html#code) works for RevealJs output.
+Quarto Extension to enable source code line highlighting and output line highlighting for HTML documents (`format: html`) similar to how [`code-line-numbers`](https://quarto.org/docs/reference/formats/html.html#code) works for RevealJs output.
 
 ## Installing
 
