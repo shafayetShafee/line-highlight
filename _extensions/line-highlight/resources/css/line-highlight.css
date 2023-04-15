@@ -11,10 +11,42 @@ code.has-line-highlights
   opacity: 0.4;
 }
 
+
+div.sourceCode.cell-code:hover
+pre
+code.has-line-highlights
+> span:not(.highlight-line) {
+  opacity: 0.4;
+}
+
+
+div.sourceCode.cell-code:hover
+pre
+code.has-line-highlights
+> span.highlight-line {
+  font-weight: 600;
+}
+
+
 /* for output-line-numbers */
 div.sourceCode
 pre.highlight
 code.has-line-highlights
 > span:not(.highlight-line) {
   opacity: 0.4;
+}
+
+
+div.sourceCode:hover
+pre.highlight
+code.has-line-highlights
+> span:not(.highlight-line) {
+  opacity: 0.4;
+}
+
+div.sourceCode:hover
+pre.highlight
+code.has-line-highlights
+> span.highlight-line {
+  font-weight: 600;
 }
