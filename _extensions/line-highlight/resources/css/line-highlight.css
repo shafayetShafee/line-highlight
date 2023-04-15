@@ -11,6 +11,16 @@ code.has-line-highlights
   opacity: 0.4;
 }
 
+/* for output-line-numbers */
+div.sourceCode
+pre.highlight
+code.has-line-highlights
+> span:not(.highlight-line) {
+  opacity: 0.4;
+}
+
+/* Adding hovering effect */
+/* from https://github.com/shafayetShafee/line-highlight/issues/1#issue-1639343001 by @GShotwell*/
 
 div.sourceCode.cell-code:hover
 pre
@@ -25,15 +35,6 @@ pre
 code.has-line-highlights
 > span.highlight-line {
   font-weight: 600;
-}
-
-
-/* for output-line-numbers */
-div.sourceCode
-pre.highlight
-code.has-line-highlights
-> span:not(.highlight-line) {
-  opacity: 0.4;
 }
 
 
