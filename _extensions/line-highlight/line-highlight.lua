@@ -34,15 +34,30 @@ local function highlight_output(line_number)
 end
 
 
+if FORMAT == "html" then
+  ensureHtmlDeps()
+end
+
+
 function Div(el)
   if FORMAT == 'html' then
-    ensureHtmlDeps()
     if el.classes:includes('cell') then
+      quarto.log.output(el.attributes)
       source_line_number = tostring(el.attributes["source-line-numbers"])
       output_line_number = tostring(el.attributes["output-line-numbers"])
       local div = el:walk(highlight_source(source_line_number))
       div = div:walk(highlight_output(output_line_number))
       return div
+    end
+  end
+end
+
+
+function CodeBlock(cb)
+  if FORMAT == "html" then
+    if cb.attributes["source-line-numbers"] then
+      cb.attributes["data-code-line-numbers"] = cb.attributes["source-line-numbers"]
+      return cb
     end
   end
 end
