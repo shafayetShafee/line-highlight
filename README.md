@@ -80,6 +80,37 @@ iris |>
 
 <img src="example-images/line-highlight02.png" alt="Example-02" width="600" />
 
+
+## Highlighting on markdown formatted codeblocks
+
+Highlighting will also works on syntactically formatted markdown code blocks (non-executable)(e.g. `{.r}`, `{.python}`, `{.julia}` etc)
+
+Use `source-line-numbers` as code-block attributes (i.e. \<attribute-name\>=\<value\>),
+
+
+```{.r source-line-numbers="1,4"}
+library(dplyr)
+
+iris |> 
+  group_by(Species) |> 
+  summarize(mean(Sepal.Length))
+```
+
+To get line numbers, use the `.numberLines` class additionally on the code-block,
+
+
+```{.python .numberLines source-line-numbers="3-4"}
+print("Hello world")
+
+for name in ["Sam", "Jake"]:
+    print(f"Hello {name}!")
+```
+
+<img src="example-images/line-highlight04.png" alt="Highlighting on markdown formatted codeblocks" width="600" />
+
+For details, [see here](https://shafayetshafee.github.io/line-highlight/example.html#highlighting-on-markdown-formatted-codeblocks).
+
+
 ### Highlighting Output Line Numbers
 
 Highlighting output line numbers a bit tricky. To enable output line number highlighting, we need to use both output class `highlight` and `numberLines` along with `output-line-numbers`.
