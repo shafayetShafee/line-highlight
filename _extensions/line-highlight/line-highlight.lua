@@ -11,6 +11,7 @@ end
 
 
 local function highlight_source(line_number)
+  -- adding line-number attrs for executable code blocks
   local source_highlighter = {
     CodeBlock = function(block)
       block.attributes["data-code-line-numbers"] = line_number
@@ -22,6 +23,7 @@ end
 
 
 local function highlight_output(line_number)
+  -- adding line-number attrs for output blocks
   local output_highlighter = {
     CodeBlock = function(block)
       if block.classes:includes('highlight') then
@@ -34,9 +36,12 @@ local function highlight_output(line_number)
 end
 
 
-function Div(el)
-  if FORMAT == 'html' then
-    ensureHtmlDeps()
+if FORMAT == "html" then
+  -- ensuring dependencies for line-highlighting
+  ensureHtmlDeps()
+  
+  -- line-highlighting for executable code blocks and output block
+  function Div(el)
     if el.classes:includes('cell') then
       source_line_number = tostring(el.attributes["source-line-numbers"])
       output_line_number = tostring(el.attributes["output-line-numbers"])
@@ -45,4 +50,19 @@ function Div(el)
       return div
     end
   end
+  
+  -- line-highlighting for syntactically formatted markdown code blocks
+  -- (i.e. for non-executable code blocks)
+  function CodeBlock(cb)
+    if cb.attributes["source-line-numbers"] then
+      cb.attributes["data-code-line-numbers"] = cb.attributes["source-line-numbers"]
+      return cb
+    end
+  end
+
 end
+
+
+
+
+

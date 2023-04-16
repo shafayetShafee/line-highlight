@@ -33,6 +33,7 @@ Here we have highlighted line number 2 and 6 to 7 and have also added line numbe
 
 ```{r}
 #| message: false
+#| warning: false
 #| class-source: "numberLines"
 #| source-line-numbers: "2,6-7"
 
@@ -44,6 +45,107 @@ iris |>
   group_by(Species) |> 
   summarize(mean(Sepal.Length))
 ```
+
+
+## Highlighting on markdown formatted codeblocks
+
+Highlighting will also works on syntactically formatted markdown code blocks (non-executable)(e.g. `{.r}`, `{.python}`, `{.julia}` etc)
+
+Use `source-line-numbers` as code-block attributes (i.e. \<attribute-name\>=\<value\>),
+
+````{.r}
+```{.r source-line-numbers="1,4"}
+library(dplyr)
+
+iris |> 
+  group_by(Species) |> 
+  summarize(mean(Sepal.Length))
+```
+````
+
+Therefore, the above code block is rendered as,
+
+```{.r source-line-numbers="1,4"}
+library(dplyr)
+
+iris |> 
+  group_by(Species) |> 
+  summarize(mean(Sepal.Length))
+```
+
+To get line numbers, use the `.numberLines` class additionally on the code-block,
+
+````{.python}
+```{.python source-line-numbers="3-4" .numberLines}
+print("Hello world")
+
+for name in ["Sam", "Jake"]:
+    print(f"Hello {name}!")
+```
+````
+
+which is then rendered as,
+
+```{.python source-line-numbers="3-4" .numberLines}
+print("Hello world")
+
+for name in ["Sam", "Jake"]:
+    print(f"Hello {name}!")
+```
+
+
+And you can use line-highlighting for code blocks of many different languages (languages for which pandoc supports syntax highlighting. See the list by running `pandoc --list-highlight-languages` if you have pandoc installed.)
+
+````{.julia}
+```{.julia .numberLines source-line-numbers="2-4"}
+for i = 1:100
+    str = i % 3 == 0 ? "Fizz" : ""
+    str *= i % 5 == 0 ? "Buzz" : ""
+    if isempty(str)
+        str = i
+    end
+    println(str)
+end
+```
+````
+
+```{.julia .numberLines source-line-numbers="2-4"}
+for i = 1:100
+    str = i % 3 == 0 ? "Fizz" : ""
+    str *= i % 5 == 0 ? "Buzz" : ""
+    if isempty(str)
+        str = i
+    end
+    println(str)
+end
+```
+
+But of course, line highlighting also works on code blocks without language class name, but you will not get the syntax highlighting,
+
+````{.julia}
+```{.numberLines source-line-numbers="2-4"}
+for i = 1:100
+    str = i % 3 == 0 ? "Fizz" : ""
+    str *= i % 5 == 0 ? "Buzz" : ""
+    if isempty(str)
+        str = i
+    end
+    println(str)
+end
+```
+````
+
+```{.numberLines source-line-numbers="2-4"}
+for i = 1:100
+    str = i % 3 == 0 ? "Fizz" : ""
+    str *= i % 5 == 0 ? "Buzz" : ""
+    if isempty(str)
+        str = i
+    end
+    println(str)
+end
+```
+
 
 
 ## Highlighting Output Line Numbers
