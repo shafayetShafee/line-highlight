@@ -5,3 +5,6 @@
 .Rhistory
 .Rproj.user/
 !docs/*
+test.qmd
+test.html
+test_files/
