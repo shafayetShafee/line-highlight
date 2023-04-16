@@ -81,7 +81,7 @@ iris |>
 <img src="example-images/line-highlight02.png" alt="Example-02" width="600" />
 
 
-## Highlighting on markdown formatted codeblocks
+### Highlighting on markdown formatted codeblocks
 
 Highlighting will also works on syntactically formatted markdown code blocks (non-executable)(e.g. `{.r}`, `{.python}`, `{.julia}` etc)
 
