@@ -70,8 +70,10 @@ local function highlight_source(line_number)
     CodeBlock = function(block)
       local lines_to_ht = get_lines_to_ht(block, "#<<")
       line_number = isEmpty(lines_to_ht) and line_number or lines_to_ht
+      quarto.log.output(line_number)
       block.attributes["data-code-line-numbers"] = line_number
       block.text = remove_pattern(get_lines(block.text), "#<<$")
+      quarto.log.output(block.text)
       return block
     end
     }
@@ -93,36 +95,53 @@ local function highlight_output(line_number)
 end
 
 
+local function highlight_code_cell()
+  -- line-highlighting for executable code blocks and output block
+  local highlighted_code_cell = {
+    Div = function(el)
+      if el.classes:includes('cell') then
+        source_line_number = tostring(el.attributes["source-line-numbers"])
+        output_line_number = tostring(el.attributes["output-line-numbers"])
+        local div = el:walk(highlight_source(source_line_number))
+        div = div:walk(highlight_output(output_line_number))
+        return div
+      end
+   end
+  }
+  return highlighted_code_cell
+end
+
+
+local function highlight_raw_cb()
+  -- line-highlighting for syntactically formatted markdown code blocks
+  -- (i.e. for non-executable code blocks)
+  local highlighted_raw_cb = {
+    CodeBlock = function(cb)
+      local lines_to_ht =  get_lines_to_ht(cb, "#<<")
+      local line_number
+      if not isEmpty(lines_to_ht) then
+        line_number = lines_to_ht
+      elseif cb.attributes["source-line-numbers"] then
+        line_number = cb.attributes["source-line-numbers"]
+      else
+        line_number = ""
+      end
+      cb.attributes["data-code-line-numbers"] = line_number
+      cb.text = remove_pattern(get_lines(cb.text), "#<<$")
+      return cb
+    end
+  }
+  return highlighted_raw_cb
+end
+
+
 if FORMAT == "html" then
   -- ensuring dependencies for line-highlighting
   ensureHtmlDeps()
   
-  -- line-highlighting for executable code blocks and output block
-  function Div(el)
-    if el.classes:includes('cell') then
-      source_line_number = tostring(el.attributes["source-line-numbers"])
-      output_line_number = tostring(el.attributes["output-line-numbers"])
-      local div = el:walk(highlight_source(source_line_number))
-      div = div:walk(highlight_output(output_line_number))
-      return div
-    end
-  end
-  
-  -- line-highlighting for syntactically formatted markdown code blocks
-  -- (i.e. for non-executable code blocks)
-  function CodeBlock(cb)
-    local lines_to_ht =  get_lines_to_ht(cb, "#<<")
-    local line_number
-    if not isEmpty(lines_to_ht) then
-      line_number = lines_to_ht
-    elseif cb.attributes["source-line-numbers"] then
-      line_number = cb.attributes["source-line-numbers"]
-    else
-      line_number = ""
-    end
-    cb.attributes["data-code-line-numbers"] = line_number
-    cb.text = remove_pattern(get_lines(cb.text), "#<<$")
-    return cb
+  function Pandoc(doc)
+    local doc = doc:walk(highlight_code_cell())
+    return doc:walk(highlight_raw_cb())
   end
 end
 
