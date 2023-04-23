@@ -6,3 +6,4 @@
 .Rproj.user/
 !docs/*
 test*
+!testing.sh
