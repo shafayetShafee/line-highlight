@@ -73,7 +73,8 @@ local function highlight_source(line_number)
       quarto.log.output(line_number)
       block.attributes["data-code-line-numbers"] = line_number
       block.text = remove_pattern(get_lines(block.text), "#<<$")
-      quarto.log.output(block.text)
+      quarto.log.output(block.attributes["data-code-line-numbers"])
+      -- quarto.log.output(block.text)
       return block
     end
     }
@@ -117,18 +118,21 @@ local function highlight_raw_cb()
   -- (i.e. for non-executable code blocks)
   local highlighted_raw_cb = {
     CodeBlock = function(cb)
-      local lines_to_ht =  get_lines_to_ht(cb, "#<<")
-      local line_number
-      if not isEmpty(lines_to_ht) then
-        line_number = lines_to_ht
-      elseif cb.attributes["source-line-numbers"] then
-        line_number = cb.attributes["source-line-numbers"]
-      else
-        line_number = ""
+      if not cb.classes:includes('cell-code') and
+         not cb.classes:includes('highlight') then
+        local lines_to_ht =  get_lines_to_ht(cb, "#<<")
+        local line_number
+        if not isEmpty(lines_to_ht) then
+          line_number = lines_to_ht
+        elseif cb.attributes["source-line-numbers"] then
+          line_number = cb.attributes["source-line-numbers"]
+        else
+          line_number = ""
+        end
+        cb.attributes["data-code-line-numbers"] = line_number
+        cb.text = remove_pattern(get_lines(cb.text), "#<<$")
+        return cb
       end
-      cb.attributes["data-code-line-numbers"] = line_number
-      cb.text = remove_pattern(get_lines(cb.text), "#<<$")
-      return cb
     end
   }
   return highlighted_raw_cb
