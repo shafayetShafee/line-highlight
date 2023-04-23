@@ -111,6 +111,89 @@ for name in ["Sam", "Jake"]:
 For details, [see here](https://shafayetshafee.github.io/line-highlight/example.html#highlighting-on-markdown-formatted-codeblocks).
 
 
+## Using Highlight Marker instead of line numbers (Added in Version 1.2.0)
+
+It is also possible to mark a line to be highlighted in the code chunk using the highlight directive  `#<<`. Note the syntax for the highlight directive, it starts with `#` (which is the commenting character for `r`, `python` and `julia` code chunk), followed by two `<` sign.
+
+```{r}
+iris |> #<<
+  head(5) 
+```
+
+<img src="example-images/line-highlight05.png" width="600" />
+
+And if both the `source-line-numbers` chunk option and highlight directive is used in a code chunk, only the lines with highlight-directive `#<<` will be highlighted and `source-line-numbers` will not have any effect.
+
+```{r}
+#| source-line-numbers: "2"
+iris |> #<<
+  head(5)
+```
+
+<img src="example-images/line-highlight05.png" width="600" />
+
+**Now `#<<` will work as a valid highlight directive only for `r`, `python`, `julia` code chunk, since `#` is a commenting character in these languages.** But what if we want to highlight line in `mermaid` or `dot` code chunk. For that, `#<<` will not work and syntax error will be issued. Instead, we need to use these language specific commenting characters.
+
+But this extension uses `#<<` as a highlight directive by default. To use different syntax for highlight directive for a code chunk, use chunk option `ht-pattern` to specify the highlight directive to be used for that code chunk, where the syntax should be `<language-specific-commenting-character><<`. 
+
+Therefore, for `mermaid` cell, `ht-pattern` should be `%%<<` and for `dot` cell, `ht-pattern` should be `//<<`. Then use these to mark a code line to be highlighted.
+
+```{mermaid}
+%%| echo: true
+%%| ht-pattern: "%%<<"
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+  C --> D[Result one] %%<<
+  C --> E[Result two]
+```
+
+<img src="example-images/line-highlight06.png" width="600" />
+
+
+```{dot}
+//| echo: true
+//| ht-pattern: "//<<"
+graph G {
+  layout=neato
+  run -- intr;
+  intr -- runbl;
+  runbl -- run;
+  run -- kernel;
+  kernel -- zombie;
+  kernel -- sleep;
+  kernel -- runmem; //<<
+  sleep -- swap;
+  swap -- runswap;
+  runswap -- new;
+  runswap -- runmem;
+  new -- runmem; //<<
+  sleep -- runmem;
+}
+```
+
+<img src="example-images/line-highlight07.png" width="600" />
+
+It is also possible to use `#<<` to highlight lines in syntactically formatted markdown code blocks,
+
+```{.r}
+library(dplyr)
+
+iris |> #<<
+  group_by(Species) |> 
+  summarize(mean(Sepal.Length)) #<<
+```
+
+
+```{.python .numberLines}
+print("Hello world")
+
+for name in ["Sam", "Jake"]: #<<
+    print(f"Hello {name}!")
+```
+
+<img src="example-images/line-highlight08.png" width="600" />
+
 ### Highlighting Output Line Numbers
 
 Highlighting output line numbers a bit tricky. To enable output line number highlighting, we need to use both output class `highlight` and `numberLines` along with `output-line-numbers`.
