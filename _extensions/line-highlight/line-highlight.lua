@@ -1,3 +1,6 @@
+local PATTERN = "#<<$"
+
+
 local function ensureHtmlDeps()
   quarto.doc.add_html_dependency({
   name = "line-highlight",
@@ -50,78 +53,81 @@ end
 
 
 function get_lines_to_ht(cb, pattern)
-  if not cb.classes:includes("cell-output") then
-    local lines_to_ht = {}
-    pattern = pattern .. "$"
-    local code_lines = get_lines(cb.text)
-    for i, line in ipairs(code_lines) do
-      if line:match(pattern) then
-        table.insert(lines_to_ht, i)
-      end
+  local lines_to_ht = {}
+  local code_lines = get_lines(cb.text)
+  for i, line in ipairs(code_lines) do
+    if line:match(pattern) then
+      table.insert(lines_to_ht, i)
     end
-    return table.concat(lines_to_ht, ",")
   end
+  return table.concat(lines_to_ht, ",")
 end
 
 
-local function highlight_source(line_number)
-  -- adding line-number attrs for executable code blocks
-  local source_highlighter = {
-    CodeBlock = function(block)
-      local lines_to_ht = get_lines_to_ht(block, "#<<")
-      line_number = isEmpty(lines_to_ht) and line_number or lines_to_ht
-      quarto.log.output(line_number)
-      block.attributes["data-code-line-numbers"] = line_number
-      block.text = remove_pattern(get_lines(block.text), "#<<$")
-      quarto.log.output(block.attributes["data-code-line-numbers"])
-      -- quarto.log.output(block.text)
-      return block
+local function add_attrs_to_cb(source_line_numbers, output_line_numbers, ht_pat)
+  -- adding line-number attrs for source and output code blocks
+  local adder = {
+    CodeBlock = function(cb)
+      if cb.classes:includes('cell-code') then
+        cb.attributes['source-line-numbers'] = source_line_numbers
+        if not isEmpty(ht_pat) then
+          cb.attributes['ht-pattern'] = tostring(ht_pat)
+        end
+      elseif cb.classes:includes('highlight') then
+        cb.attributes['output-line-numbers'] = output_line_numbers
+      end
+      return cb
     end
     }
-  return source_highlighter
+  return adder
 end
 
 
-local function highlight_output(line_number)
-  -- adding line-number attrs for output blocks
-  local output_highlighter = {
-    CodeBlock = function(block)
-      if block.classes:includes('highlight') then
-        block.attributes["data-code-line-numbers"] = line_number
-        return block
-      end
-    end
-  }
-  return output_highlighter
-end
 
-
-local function highlight_code_cell()
+local function add_cb_attrs()
   -- line-highlighting for executable code blocks and output block
-  local highlighted_code_cell = {
+  local adder = {
     Div = function(el)
       if el.classes:includes('cell') then
-        source_line_number = tostring(el.attributes["source-line-numbers"])
-        output_line_number = tostring(el.attributes["output-line-numbers"])
-        local div = el:walk(highlight_source(source_line_number))
-        div = div:walk(highlight_output(output_line_number))
+        local source_line_numbers = tostring(el.attributes["source-line-numbers"])
+        local output_line_numbers = tostring(el.attributes["output-line-numbers"])
+        local ht_pat = el.attributes['ht-pattern']
+        local div = el:walk(
+          add_attrs_to_cb(source_line_numbers, output_line_numbers, ht_pat)
+          )
         return div
       end
    end
   }
-  return highlighted_code_cell
+  return adder
 end
 
 
-local function highlight_raw_cb()
+
+local function highlight_cb()
   -- line-highlighting for syntactically formatted markdown code blocks
   -- (i.e. for non-executable code blocks)
-  local highlighted_raw_cb = {
+  local highlighter = {
     CodeBlock = function(cb)
-      if not cb.classes:includes('cell-code') and
-         not cb.classes:includes('highlight') then
-        local lines_to_ht =  get_lines_to_ht(cb, "#<<")
-        local line_number
+      local pattern
+      local pattern_attr = cb.attributes['ht-pattern']
+      if not isEmpty(pattern_attr) then
+        pattern = escape_pattern(pattern_attr) .. "$"
+      else
+        pattern = PATTERN
+      end
+      local lines_to_ht =  get_lines_to_ht(cb, pattern)
+      local line_number
+      local line_number_attr
+      if cb.classes:includes('cell-code') then
+        line_number_attr = cb.attributes['source-line-numbers']
+        line_number = isEmpty(lines_to_ht) and line_number_attr or lines_to_ht
+        cb.attributes['data-code-line-numbers'] = line_number
+      elseif cb.classes:includes('highlight') then
+        line_number_attr = cb.attributes['output-line-numbers']
+        line_number = line_number_attr
+        cb.attributes['data-code-line-numbers'] = line_number
+      else
         if not isEmpty(lines_to_ht) then
           line_number = lines_to_ht
         elseif cb.attributes["source-line-numbers"] then
@@ -130,12 +136,12 @@ local function highlight_raw_cb()
           line_number = ""
         end
         cb.attributes["data-code-line-numbers"] = line_number
-        cb.text = remove_pattern(get_lines(cb.text), "#<<$")
-        return cb
       end
+      cb.text = remove_pattern(get_lines(cb.text), pattern)
+      return cb
     end
   }
-  return highlighted_raw_cb
+  return highlighter
 end
 
 
@@ -144,8 +150,8 @@ if FORMAT == "html" then
   ensureHtmlDeps()
   
   function Pandoc(doc)
-    local doc = doc:walk(highlight_code_cell())
-    return doc:walk(highlight_raw_cb())
+    local doc = doc:walk(add_cb_attrs())
+    return doc:walk(highlight_cb())
   end
 end
 
