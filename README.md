@@ -113,7 +113,7 @@ For details, [see here](https://shafayetshafee.github.io/line-highlight/example.
 
 ## Using Highlight Marker instead of line numbers (Added in Version 1.2.0)
 
-It is also possible to mark a line to be highlighted in the code chunk using the highlight directive  `#<<`. Note the syntax for the highlight directive, it starts with `#` (which is the commenting character for `r`, `python` and `julia` code chunk), followed by two `<` sign.
+It is also possible to mark a line to be highlighted in the code chunk using the highlight directive  `#<<` at the end of the line to be highlighted. Note the syntax for the highlight directive, it starts with `#` (which is the commenting character for `r`, `python` and `julia` code chunk), followed by two `<` sign.
 
 ```{r}
 iris |> #<<
