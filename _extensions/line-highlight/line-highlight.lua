@@ -1,6 +1,5 @@
 local PATTERN = "#<<$"
 
-
 local function ensureHtmlDeps()
   quarto.doc.add_html_dependency({
   name = "line-highlight",
@@ -52,6 +51,7 @@ function escape_pattern(s)
 end
 
 
+-- get line numbers for the lines that are marked with ht-pattern/PATTERN
 function get_lines_to_ht(cb, pattern)
   local lines_to_ht = {}
   local code_lines = get_lines(cb.text)
@@ -64,6 +64,7 @@ function get_lines_to_ht(cb, pattern)
 end
 
 
+-- add line numbers and ht-pattern attrs to codeblock
 local function add_attrs_to_cb(source_line_numbers, output_line_numbers, ht_pat)
   -- adding line-number attrs for source and output code blocks
   local adder = {
@@ -83,9 +84,8 @@ local function add_attrs_to_cb(source_line_numbers, output_line_numbers, ht_pat)
 end
 
 
-
+-- pass the div attrs to CodeBlock
 local function add_cb_attrs()
-  -- line-highlighting for executable code blocks and output block
   local adder = {
     Div = function(el)
       if el.classes:includes('cell') then
@@ -103,10 +103,8 @@ local function add_cb_attrs()
 end
 
 
-
+-- highlight the code blocks
 local function highlight_cb()
-  -- line-highlighting for syntactically formatted markdown code blocks
-  -- (i.e. for non-executable code blocks)
   local highlighter = {
     CodeBlock = function(cb)
       local pattern
@@ -120,14 +118,17 @@ local function highlight_cb()
       local line_number
       local line_number_attr
       if cb.classes:includes('cell-code') then
+        -- for executable code chunk
         line_number_attr = cb.attributes['source-line-numbers']
         line_number = isEmpty(lines_to_ht) and line_number_attr or lines_to_ht
         cb.attributes['data-code-line-numbers'] = line_number
       elseif cb.classes:includes('highlight') then
+        -- for code output
         line_number_attr = cb.attributes['output-line-numbers']
         line_number = line_number_attr
         cb.attributes['data-code-line-numbers'] = line_number
       else
+        -- for markdown CodeBlock
         if not isEmpty(lines_to_ht) then
           line_number = lines_to_ht
         elseif cb.attributes["source-line-numbers"] then
