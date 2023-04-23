@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.309">
+<meta name="generator" content="quarto-1.3.333">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -71,6 +71,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="example_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script src="example_files/libs/quarto-contrib/line-highlight-1.0.0/line-highlight.js" defer="true"></script>
 <link href="example_files/libs/quarto-contrib/line-highlight-1.0.0/line-highlight.css" rel="stylesheet">
+<script src="example_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="example_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="example_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -85,6 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#highlighting-source-line-numbers" id="toc-highlighting-source-line-numbers" class="nav-link active" data-scroll-target="#highlighting-source-line-numbers">Highlighting Source Line Numbers</a></li>
   <li><a href="#highlighting-on-markdown-formatted-codeblocks" id="toc-highlighting-on-markdown-formatted-codeblocks" class="nav-link" data-scroll-target="#highlighting-on-markdown-formatted-codeblocks">Highlighting on markdown formatted codeblocks</a></li>
+  <li><a href="#using-highlight-marker-instead-of-line-numbers-added-in-version-1.2.0" id="toc-using-highlight-marker-instead-of-line-numbers-added-in-version-1.2.0" class="nav-link" data-scroll-target="#using-highlight-marker-instead-of-line-numbers-added-in-version-1.2.0">Using Highlight Marker instead of line numbers (Added in Version 1.2.0)</a></li>
   <li><a href="#highlighting-output-line-numbers" id="toc-highlighting-output-line-numbers" class="nav-link" data-scroll-target="#highlighting-output-line-numbers">Highlighting Output Line Numbers</a></li>
   </ul>
 </nav>
@@ -117,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 16, 2023</p>
+      <p class="date-modified">April 24, 2023</p>
     </div>
   </div>
     
@@ -126,16 +130,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<blockquote class="blockquote">
+<p>Note: View the source code of this document by clicking <code>&lt;/&gt; Code</code> on top-right corner.</p>
+</blockquote>
 <section id="highlighting-source-line-numbers" class="level2">
 <h2 class="anchored" data-anchor-id="highlighting-source-line-numbers">Highlighting Source Line Numbers</h2>
 <section id="example-01" class="level4">
 <h4 class="anchored" data-anchor-id="example-01">Example 01</h4>
-<p>Suppose we want to highlight the second line of the following code chunk, to do that, we simply use, <code>source-line-numbers: "2"</code>.</p>
+<p>Suppose we want to highlight the second line of the following code chunk, to do that, we simply use, <code>source-line-numbers: "2"</code>. Therefore,</p>
 <div class="cell" data-source-line-numbers="2">
-<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb1" data-source-line-numbers="2" data-code-line-numbers="2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers="2"><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+<pre data-code-line-numbers=""><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1          5.1         3.5          1.4         0.2  setosa
 2          4.9         3.0          1.4         0.2  setosa
 3          4.7         3.2          1.3         0.2  setosa
@@ -149,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Also, having the source code line numbered in such case would be helpful. We can do that by using source class <code>numberLines</code> (i.e.&nbsp;<code>#| class-source: "numberLines"</code>).</p>
 <p>Here we have highlighted line number 2 and 6 to 7 and have also added line numbers at the left side using <code>numberLines</code> source-class.</p>
 <div class="cell" data-source-line-numbers="2,6-7">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="2,6-7"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># library call</span></span>
+<div class="sourceCode cell-code" id="cb3" data-source-line-numbers="2,6-7" data-code-line-numbers="2,6-7"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># library call</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb3-3"><a href="#cb3-3"></a></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="co"># code</span></span>
@@ -157,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> </span>
 <span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Sepal.Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre data-code-line-numbers="2,6-7"><code># A tibble: 3 × 2
+<pre data-code-line-numbers=""><code># A tibble: 3 × 2
   Species    `mean(Sepal.Length)`
   &lt;fct&gt;                     &lt;dbl&gt;
 1 setosa                     5.01
@@ -171,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="highlighting-on-markdown-formatted-codeblocks">Highlighting on markdown formatted codeblocks</h2>
 <p>Highlighting will also works on syntactically formatted markdown code blocks (non-executable)(e.g.&nbsp;<code>{.r}</code>, <code>{.python}</code>, <code>{.julia}</code> etc)</p>
 <p>Use <code>source-line-numbers</code> as code-block attributes (i.e.&nbsp;&lt;attribute-name&gt;=&lt;value&gt;),</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{.r source-line-numbers="1,4"}</span></span>
+<div class="sourceCode" id="cb5" data-code-line-numbers=""><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="st">```</span><span class="at">{.r source-line-numbers="1,4"}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="at">library(dplyr)</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="at">iris |&gt; </span></span>
@@ -185,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> </span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Sepal.Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To get line numbers, use the <code>.numberLines</code> class additionally on the code-block,</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>```{.python source<span class="op">-</span>line<span class="op">-</span>numbers<span class="op">=</span><span class="st">"3-4"</span> .numberLines}</span>
+<div class="sourceCode" id="cb7" data-code-line-numbers=""><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>```{.python source<span class="op">-</span>line<span class="op">-</span>numbers<span class="op">=</span><span class="st">"3-4"</span> .numberLines}</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"Sam"</span>, <span class="st">"Jake"</span>]:</span>
@@ -197,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-3"><a href="#cb8-3"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"Sam"</span>, <span class="st">"Jake"</span>]:</span>
 <span id="cb8-4"><a href="#cb8-4"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And you can use line-highlighting for code blocks of many different languages (languages for which pandoc supports syntax highlighting. See the list by running <code>pandoc --list-highlight-languages</code> if you have pandoc installed.)</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ss">```{.julia .numberLines source-line-numbers="2-4"}</span></span>
+<div class="sourceCode" id="cb9" data-code-line-numbers=""><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ss">```{.julia .numberLines source-line-numbers="2-4"}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ss">for i = 1:100</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ss">    str = i % 3 == 0 ? "Fizz" : ""</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    str *= i % 5 == 0 ? "Buzz" : ""</span></span>
@@ -216,7 +223,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-7"><a href="#cb10-7"></a>    <span class="fu">println</span>(str)</span>
 <span id="cb10-8"><a href="#cb10-8"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>But of course, line highlighting also works on code blocks without language class name, but you will not get the syntax highlighting,</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ss">```{.numberLines source-line-numbers="2-4"}</span></span>
+<div class="sourceCode" id="cb11" data-code-line-numbers=""><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ss">```{.numberLines source-line-numbers="2-4"}</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ss">for i = 1:100</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ss">    str = i % 3 == 0 ? "Fizz" : ""</span></span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ss">    str *= i % 5 == 0 ? "Buzz" : ""</span></span>
@@ -235,6 +242,190 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-7"><a href="#cb12-7"></a>    println(str)</span>
 <span id="cb12-8"><a href="#cb12-8"></a>end</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="using-highlight-marker-instead-of-line-numbers-added-in-version-1.2.0" class="level2">
+<h2 class="anchored" data-anchor-id="using-highlight-marker-instead-of-line-numbers-added-in-version-1.2.0">Using Highlight Marker instead of line numbers (Added in Version 1.2.0)</h2>
+<p>It is also possible to mark a line to be highlighted in the code chunk using the highlight directive <code>#&lt;&lt;</code>. Note the syntax for the highlight directive, it starts with <code>#</code> (which is the commenting character for <code>r</code>, <code>python</code> and <code>julia</code> code chunk), followed by two <code>&lt;</code> sign.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" data-source-line-numbers="nil" data-code-line-numbers="1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa</code></pre>
+</div>
+</div>
+<p>And if both the <code>source-line-numbers</code> chunk option and highlight directive is used in a code chunk, only the lines with highlight-directive <code>#&lt;&lt;</code> will be highlighted and <code>source-line-numbers</code> will not have any effect.</p>
+<div class="cell" data-source-line-numbers="2">
+<div class="sourceCode cell-code" id="cb15" data-source-line-numbers="2" data-code-line-numbers="1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre data-code-line-numbers=""><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa</code></pre>
+</div>
+</div>
+<p><strong>Now <code>#&lt;&lt;</code> will work as a valid highlight directive only for <code>r</code>, <code>python</code>, <code>julia</code> code chunk, since <code>#</code> is a commenting character in these languages.</strong> But what if we want to highlight line in <code>mermaid</code> or <code>dot</code> code chunk. For that, <code>#&lt;&lt;</code> will not work and syntax error will be issued. Instead, we need to use these language specific commenting characters.</p>
+<p>But this extension uses <code>#&lt;&lt;</code> as a highlight directive by default. To use different syntax for highlight directive for a code chunk, use chunk option <code>ht-pattern</code> to specify the highlight directive to be used for that code chunk, where the syntax should be <code>&lt;language-specific-commenting-character&gt;&lt;&lt;</code>.</p>
+<p>Therefore, for <code>mermaid</code> cell, <code>ht-pattern</code> should be <code>%%&lt;&lt;</code> and for <code>dot</code> cell, <code>ht-pattern</code> should be <code>//&lt;&lt;</code>. Then use these to mark a code line to be highlighted.</p>
+<div class="cell" data-ht-pattern="%%<<">
+<div class="sourceCode cell-code" id="cb17" data-source-line-numbers="nil" data-ht-pattern="%%<<" data-code-line-numbers="4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  A[Hard edge] --&gt; B(Round edge)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  B --&gt; C{Decision}</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  C --&gt; D[Result one] </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  C --&gt; E[Result two]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Hard edge] --&gt; B(Round edge)
+  B --&gt; C{Decision}
+  C --&gt; D[Result one] %%&lt;&lt;
+  C --&gt; E[Result two]
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-ht-pattern="//<<">
+<div class="sourceCode cell-code" id="cb18" data-source-line-numbers="nil" data-ht-pattern="//<<" data-code-line-numbers="9,14"><pre class="sourceCode dot code-with-copy"><code class="sourceCode dot"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="va">graph</span> <span class="va">G</span> <span class="ot">{</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">layout</span><span class="ot">=</span><span class="va">neato</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">run</span><span class="co"> -- </span><span class="va">intr</span><span class="ot">;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">intr</span><span class="co"> -- </span><span class="va">runbl</span><span class="ot">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">runbl</span><span class="co"> -- </span><span class="va">run</span><span class="ot">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">run</span><span class="co"> -- </span><span class="va">kernel</span><span class="ot">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">kernel</span><span class="co"> -- </span><span class="va">zombie</span><span class="ot">;</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">kernel</span><span class="co"> -- </span><span class="va">sleep</span><span class="ot">;</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">kernel</span><span class="co"> -- </span><span class="va">runmem</span><span class="ot">;</span><span class="co"> </span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">sleep</span><span class="co"> -- </span><span class="va">swap</span><span class="ot">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">swap</span><span class="co"> -- </span><span class="va">runswap</span><span class="ot">;</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">runswap</span><span class="co"> -- </span><span class="va">new</span><span class="ot">;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">runswap</span><span class="co"> -- </span><span class="va">runmem</span><span class="ot">;</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">new</span><span class="co"> -- </span><span class="va">runmem</span><span class="ot">;</span><span class="co"> </span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">  </span><span class="va">sleep</span><span class="co"> -- </span><span class="va">runmem</span><span class="ot">;</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="ot">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 370.99 246.71" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 242.71)">
+<title>
+G
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-242.71 366.99,-242.71 366.99,4 -4,4"></polygon> <!-- run --> <g id="node1" class="node">
+<title>
+run
+</title>
+<ellipse fill="none" stroke="black" cx="105.22" cy="-110.03" rx="27" ry="18"></ellipse> <text text-anchor="middle" x="105.22" y="-105.83" font-family="Times,serif" font-size="14.00">run</text> </g> <!-- intr --> <g id="node2" class="node">
+<title>
+intr
+</title>
+<ellipse fill="none" stroke="black" cx="48.11" cy="-59.71" rx="27" ry="18"></ellipse> <text text-anchor="middle" x="48.11" y="-55.51" font-family="Times,serif" font-size="14.00">intr</text> </g> <!-- run&#45;&#45;intr --> <g id="edge1" class="edge">
+<title>
+run–intr
+</title>
+<path fill="none" stroke="black" d="M88.7,-95.48C81.19,-88.86 72.32,-81.04 64.79,-74.4"></path> </g> <!-- kernel --> <g id="node4" class="node">
+<title>
+kernel
+</title>
+<ellipse fill="none" stroke="black" cx="180.95" cy="-137.54" rx="35.33" ry="18"></ellipse> <text text-anchor="middle" x="180.95" y="-133.34" font-family="Times,serif" font-size="14.00">kernel</text> </g> <!-- run&#45;&#45;kernel --> <g id="edge4" class="edge">
+<title>
+run–kernel
+</title>
+<path fill="none" stroke="black" d="M129.18,-118.73C136.46,-121.38 144.54,-124.31 152.1,-127.06"></path> </g> <!-- runbl --> <g id="node3" class="node">
+<title>
+runbl
+</title>
+<ellipse fill="none" stroke="black" cx="31.42" cy="-126.16" rx="31.34" ry="18"></ellipse> <text text-anchor="middle" x="31.42" y="-121.96" font-family="Times,serif" font-size="14.00">runbl</text> </g> <!-- intr&#45;&#45;runbl --> <g id="edge2" class="edge">
+<title>
+intr–runbl
+</title>
+<path fill="none" stroke="black" d="M43.64,-77.51C41.25,-87.05 38.3,-98.76 35.91,-108.3"></path> </g> <!-- runbl&#45;&#45;run --> <g id="edge3" class="edge">
+<title>
+runbl–run
+</title>
+<path fill="none" stroke="black" d="M61.01,-119.7C67.11,-118.36 73.48,-116.97 79.43,-115.67"></path> </g> <!-- zombie --> <g id="node5" class="node">
+<title>
+zombie
+</title>
+<ellipse fill="none" stroke="black" cx="168.31" cy="-220.71" rx="39.42" ry="18"></ellipse> <text text-anchor="middle" x="168.31" y="-216.51" font-family="Times,serif" font-size="14.00">zombie</text> </g> <!-- kernel&#45;&#45;zombie --> <g id="edge5" class="edge">
+<title>
+kernel–zombie
+</title>
+<path fill="none" stroke="black" d="M178.21,-155.58C176.09,-169.54 173.17,-188.76 171.05,-202.7"></path> </g> <!-- sleep --> <g id="node6" class="node">
+<title>
+sleep
+</title>
+<ellipse fill="none" stroke="black" cx="253.25" cy="-154.97" rx="30.76" ry="18"></ellipse> <text text-anchor="middle" x="253.25" y="-150.77" font-family="Times,serif" font-size="14.00">sleep</text> </g> <!-- kernel&#45;&#45;sleep --> <g id="edge6" class="edge">
+<title>
+kernel–sleep
+</title>
+<path fill="none" stroke="black" d="M212.87,-145.23C216.81,-146.18 220.81,-147.15 224.69,-148.08"></path> </g> <!-- runmem --> <g id="node7" class="node">
+<title>
+runmem
+</title>
+<ellipse fill="none" stroke="black" cx="240.17" cy="-83.36" rx="43.44" ry="18"></ellipse> <text text-anchor="middle" x="240.17" y="-79.16" font-family="Times,serif" font-size="14.00">runmem</text> </g> <!-- kernel&#45;&#45;runmem --> <g id="edge7" class="edge">
+<title>
+kernel–runmem
+</title>
+<path fill="none" stroke="black" d="M198.4,-121.57C205.9,-114.71 214.67,-106.69 222.23,-99.77"></path> </g> <!-- sleep&#45;&#45;runmem --> <g id="edge13" class="edge">
+<title>
+sleep–runmem
+</title>
+<path fill="none" stroke="black" d="M249.95,-136.9C247.98,-126.13 245.49,-112.49 243.51,-101.67"></path> </g> <!-- swap --> <g id="node8" class="node">
+<title>
+swap
+</title>
+<ellipse fill="none" stroke="black" cx="330.95" cy="-148.25" rx="30.77" ry="18"></ellipse> <text text-anchor="middle" x="330.95" y="-144.05" font-family="Times,serif" font-size="14.00">swap</text> </g> <!-- sleep&#45;&#45;swap --> <g id="edge8" class="edge">
+<title>
+sleep–swap
+</title>
+<path fill="none" stroke="black" d="M283.96,-152.31C289.3,-151.85 294.86,-151.37 300.21,-150.91"></path> </g> <!-- runswap --> <g id="node9" class="node">
+<title>
+runswap
+</title>
+<ellipse fill="none" stroke="black" cx="319.23" cy="-73.46" rx="43.51" ry="18"></ellipse> <text text-anchor="middle" x="319.23" y="-69.26" font-family="Times,serif" font-size="14.00">runswap</text> </g> <!-- swap&#45;&#45;runswap --> <g id="edge9" class="edge">
+<title>
+swap–runswap
+</title>
+<path fill="none" stroke="black" d="M328.11,-130.15C326.28,-118.47 323.91,-103.35 322.08,-91.66"></path> </g> <!-- runswap&#45;&#45;runmem --> <g id="edge11" class="edge">
+<title>
+runswap–runmem
+</title>
+<path fill="none" stroke="black" d="M276.92,-78.76C276.78,-78.77 276.63,-78.79 276.48,-78.81"></path> </g> <!-- new --> <g id="node10" class="node">
+<title>
+new
+</title>
+<ellipse fill="none" stroke="black" cx="278.31" cy="-18" rx="27.25" ry="18"></ellipse> <text text-anchor="middle" x="278.31" y="-13.8" font-family="Times,serif" font-size="14.00">new</text> </g> <!-- runswap&#45;&#45;new --> <g id="edge10" class="edge">
+<title>
+runswap–new
+</title>
+<path fill="none" stroke="black" d="M306.51,-56.21C301.35,-49.22 295.42,-41.18 290.33,-34.29"></path> </g> <!-- new&#45;&#45;runmem --> <g id="edge12" class="edge">
+<title>
+new–runmem
+</title>
+<path fill="none" stroke="black" d="M268.49,-34.83C263.01,-44.21 256.2,-55.89 250.62,-65.44"></path> </g> </g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<p>It is also possible to use <code>#&lt;&lt;</code> to highlight lines in syntatically formatted markdown code blocks,</p>
+<div class="sourceCode" id="cb19" data-code-line-numbers="3,5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Sepal.Length)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20" data-code-line-numbers="3"><pre class="sourceCode numberSource python numberLines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"Sam"</span>, <span class="st">"Jake"</span>]: </span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
 <section id="highlighting-output-line-numbers" class="level2">
 <h2 class="anchored" data-anchor-id="highlighting-output-line-numbers">Highlighting Output Line Numbers</h2>
 <p>Highlighting output line numbers a bit tricky. To enable output line number highlighting, we need to use both output class <code>highlight</code> and <code>numberLines</code> along with <code>output-line-numbers</code>.</p>
@@ -242,29 +433,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="example-01-1">Example 01</h4>
 <p>So to highlight second line of output, we use <code>output-line-numbers: "2"</code> and <code>class-output: "highlight numberLines"</code> (Sorry couldn’t make it any more easier :D :p).</p>
 <div class="cell" data-source-line-numbers="1,3" data-output-line-numbers="2">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="1,3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21" data-source-line-numbers="1,3" data-code-line-numbers="1,3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mpg =</span> <span class="fu">mean</span>(mpg)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb14" data-code-line-numbers="2"><pre class="sourceCode numberSource highlight numberLines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>   avg_mpg</span>
-<span id="cb14-2"><a href="#cb14-2"></a>1 20.09062</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22" data-output-line-numbers="2" data-code-line-numbers="2"><pre class="sourceCode numberSource highlight numberLines code-with-copy"><code class="sourceCode"><span id="cb22-1"><a href="#cb22-1"></a>   avg_mpg</span>
+<span id="cb22-2"><a href="#cb22-2"></a>1 20.09062</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="example-02" class="level4">
 <h4 class="anchored" data-anchor-id="example-02">Example 02</h4>
 <div class="cell" data-source-line-numbers="2" data-output-line-numbers="1-3">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="2"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>iris <span class="sc">|&gt;</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> </span>
-<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Sepal.Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23" data-source-line-numbers="2" data-code-line-numbers="2"><pre class="sourceCode numberSource r numberLines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>iris <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">summarize</span>(<span class="fu">mean</span>(Sepal.Length))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb16" data-code-line-numbers="1-3"><pre class="sourceCode numberSource highlight numberLines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href="#cb16-1"></a># A tibble: 3 × 2</span>
-<span id="cb16-2"><a href="#cb16-2"></a>  Species    `mean(Sepal.Length)`</span>
-<span id="cb16-3"><a href="#cb16-3"></a>  &lt;fct&gt;                     &lt;dbl&gt;</span>
-<span id="cb16-4"><a href="#cb16-4"></a>1 setosa                     5.01</span>
-<span id="cb16-5"><a href="#cb16-5"></a>2 versicolor                 5.94</span>
-<span id="cb16-6"><a href="#cb16-6"></a>3 virginica                  6.59</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24" data-output-line-numbers="1-3" data-code-line-numbers="1-3"><pre class="sourceCode numberSource highlight numberLines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a># A tibble: 3 × 2</span>
+<span id="cb24-2"><a href="#cb24-2"></a>  Species    `mean(Sepal.Length)`</span>
+<span id="cb24-3"><a href="#cb24-3"></a>  &lt;fct&gt;                     &lt;dbl&gt;</span>
+<span id="cb24-4"><a href="#cb24-4"></a>1 setosa                     5.01</span>
+<span id="cb24-5"><a href="#cb24-5"></a>2 versicolor                 5.94</span>
+<span id="cb24-6"><a href="#cb24-6"></a>3 virginica                  6.59</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
