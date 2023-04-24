@@ -1,12 +1,14 @@
 ---
-title: "Code Line Number(s) Highlight in html"
+title: "Code Line Highlight in html"
 author: "Shafayet Khan Shafee"
 date: "01-06-2023"
 date-modified: last-modified
 format: html
+code-tools: true
 toc: true
 filters:
   - line-highlight
+embed-resources: true
 ---
 
 > Note: View the source code of this document by clicking `</> Code` on top-right corner.

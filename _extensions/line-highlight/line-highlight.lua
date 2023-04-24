@@ -5,7 +5,12 @@ local function ensureHtmlDeps()
   name = "line-highlight",
   version = "1.0.0",
   scripts = {
-    { path = "resources/js/line-highlight.js", attribs = {defer = "true"} }
+    { 
+      path = "resources/js/line-highlight.js", 
+      attribs = {defer = "true"},
+      afterBody = true
+      
+    }
   },
   stylesheets = {"resources/css/line-highlight.css"}
 })
