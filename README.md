@@ -11,19 +11,34 @@ quarto add shafayetShafee/line-highlight
 This will install the extension under the `_extensions` subdirectory.
 If you're using version control, you will want to check in this directory.
 
+**Please Note that, this filter extension requires Quarto v1.2 at least to work.**
+
 ## Using
 
 Once installed, using this filter is easy. Simply add the following in your document yaml,
 
 ```
 ---
-title: "Code Line Number(s) Highlight in html"
+title: "Code Line Highlight in html"
 format: html
 filters:
   - line-highlight
 ---
 ```
-**Please Note that, this filter extension requires Quarto v1.2 at least to work.**
+
+It seems `line-highlight` filter does not works for code chunks within the [`Callout Blocks`](https://quarto.org/docs/authoring/callouts.html) or [`Tabsets`](https://quarto.org/docs/output-formats/html-basics.html#tabsets), if used as above (See [`#15`](https://github.com/shafayetShafee/line-highlight/issues/15#issuecomment-1520664357) for details). To get `line-highlight` working for code chunks within the callout blocks or tabset panels, run the `line-highlight` filter after the `quarto` filter as follows,
+
+
+```
+---
+title: "Code Line Highlight in html"
+format: html
+filters:
+  - quarto
+  - line-highlight
+---
+```
+
 
 ### Highlighting Source Line Numbers
 
