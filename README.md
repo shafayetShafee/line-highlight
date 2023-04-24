@@ -26,7 +26,7 @@ filters:
 ---
 ```
 
-It seems `line-highlight` filter does not works for code chunks within the [`Callout Blocks`](https://quarto.org/docs/authoring/callouts.html) or [`Tabsets`](https://quarto.org/docs/output-formats/html-basics.html#tabsets), if used as above (See [`#15`](https://github.com/shafayetShafee/line-highlight/issues/15) for details). To get `line-highlight` working for code chunks within the callout blocks or tabset panels, run the `line-highlight` filter after the `quarto` filter as follows,
+It seems `line-highlight` filter does not works for code chunks within the [`Callout Blocks`](https://quarto.org/docs/authoring/callouts.html) or [`Tabsets`](https://quarto.org/docs/output-formats/html-basics.html#tabsets), if used as above (See [`#15`](https://github.com/shafayetShafee/line-highlight/issues/15#issuecomment-1520664357) for details). To get `line-highlight` working for code chunks within the callout blocks or tabset panels, run the `line-highlight` filter after the `quarto` filter as follows,
 
 
 ```
