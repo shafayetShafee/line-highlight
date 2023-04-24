@@ -7,6 +7,7 @@ format: html
 code-tools: true
 toc: true
 filters:
+  - quarto
   - line-highlight
 embed-resources: true
 ---
@@ -258,3 +259,94 @@ iris |>
   group_by(Species) |> 
   summarize(mean(Sepal.Length))
 ```
+
+
+## Code Blocks within the `panel-tabset`, `callout-blocks`
+
+To get the line-highlighting for code blocks within the `panel-tabset`s or Callout Blocks, you need to run the `line-highlight` filter after the `quarto` filter, like this,
+
+``` yaml
+---
+[..other options..]
+filters:
+  - quarto
+  - line-highlight
+[..other options..]
+---
+```
+
+> This document itself has been rendered by following above (since it contains examples for the case of `panel-tabset` and `callout-blocks`). You can verify it by clicking `</> Code` button on top-right corner
+
+And then `line-highlight` will also work for code blocks within the panel tabsets and callout blocks.
+
+### Panel Tabsets
+
+::: panel-tabset
+
+## Example 1
+
+```{.r}
+iris |> #<<
+  head(5)
+```
+
+## Example 2
+
+```{.r}
+library(dplyr) #<<
+
+# code
+iris |> 
+  group_by(Species) |> #<<
+  summarize(mean(Sepal.Length))
+```
+
+:::
+
+
+### Callout Blocks
+
+::: callout-note
+
+## Example 1
+
+```{.r}
+library(dplyr)
+
+iris |> #<<
+  group_by(Species) |> 
+  summarize(mean(Sepal.Length)) #<<
+```
+
+:::
+
+
+::: callout-note
+
+## Example 2
+
+```{.python source-line-numbers="3-4" .numberLines}
+print("Hello world")
+
+for name in ["Sam", "Jake"]:
+    print(f"Hello {name}!")
+```
+
+:::
+
+::: callout-note
+
+## Example 3
+
+```{.julia source-line-numbers="2-4" .numberLines}
+for i = 1:100 #<<
+    str = i % 3 == 0 ? "Fizz" : ""
+    str *= i % 5 == 0 ? "Buzz" : ""
+    if isempty(str)
+        str = i
+    end
+    println(str) #<<
+end
+```
+
+:::
