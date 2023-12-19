@@ -1,4 +1,4 @@
-local PATTERN = "#<<$"
+local PATTERN = "# ?<<$"
 
 local function ensureHtmlDeps()
   quarto.doc.add_html_dependency({
