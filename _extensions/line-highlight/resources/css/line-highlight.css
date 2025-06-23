@@ -2,34 +2,45 @@
 modified and reduced from
 https://github.com/quarto-dev/quarto-cli/tree/main/src/resources/formats/revealjs/plugins/line-highlight
 */
+:root {
+  /* Dimmed lines (not-highlighted) */
+  --lh--dim--opacity: 0.4;
+  --lh--dim--opacity-hover: 0.4;
+  /* Highlighted lines */
+  --lh--highlight--opacity: 0.6;
+  --lh--highlight--opacity-hover: 1;
+  --lh--highlight--font-weight-hover: 600;
+}
 
 /* for source-line-numbers */
 body:not(.modal-open) div.sourceCode pre code.has-line-highlights > span:not(.highlight-line) {
-  opacity: 0.4;
+  opacity: var(--lh--dim--opacity);
 }
 
 /* for output-line-numbers */
 body:not(.modal-open) div.sourceCode pre.highlight code.has-line-highlights > span:not(.highlight-line) {
-  opacity: 0.4;
+  opacity: var(--lh--dim--opacity);
 }
 
 /* Adding hovering effect */
 /* from https://github.com/shafayetShafee/line-highlight/issues/1#issue-1639343001 by @GShotwell*/
 
 body:not(.modal-open) div.sourceCode:hover pre code.has-line-highlights > span:not(.highlight-line) {
-  opacity: 0.4;
+  opacity: var(--lh--dim--opacity-hover);
 }
 
 
 body:not(.modal-open) div.sourceCode:hover pre code.has-line-highlights > span.highlight-line {
-  font-weight: 600;
+  opacity: var(--lh--highlight--opacity-hover);
+  font-weight: var(--lh--highlight--font-weight-hover);
 }
 
 
 body:not(.modal-open) div.sourceCode:hover pre.highlight code.has-line-highlights > span:not(.highlight-line) {
-  opacity: 0.4;
+  opacity: var(--lh--dim--opacity-hover);
 }
 
 body:not(.modal-open) div.sourceCode:hover pre.highlight code.has-line-highlights > span.highlight-line {
-  font-weight: 600;
+  opacity: var(--lh--highlight--opacity-hover);
+  font-weight: var(--lh--highlight--font-weight-hover);
 }
