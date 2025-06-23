@@ -102,7 +102,7 @@ Highlighting will also works on syntactically formatted markdown code blocks (no
 
 Use `source-line-numbers` as code-block attributes (i.e. \<attribute-name\>=\<value\>),
 
-
+~~~
 ```{.r source-line-numbers="1,4"}
 library(dplyr)
 
@@ -110,16 +110,18 @@ iris |>
   group_by(Species) |> 
   summarize(mean(Sepal.Length))
 ```
+~~~
 
 To get line numbers, use the `.numberLines` class additionally on the code-block,
 
-
+~~~
 ```{.python .numberLines source-line-numbers="3-4"}
 print("Hello world")
 
 for name in ["Sam", "Jake"]:
     print(f"Hello {name}!")
 ```
+~~~
 
 <img src="example-images/line-highlight04.png" alt="Highlighting on markdown formatted codeblocks" width="600" />
 
@@ -130,20 +132,24 @@ For details, [see here](https://shafayetshafee.github.io/line-highlight/example.
 
 It is also possible to mark a line to be highlighted in the code chunk using the highlight directive  `#<<` at the end of the line to be highlighted. Note the syntax for the highlight directive, it starts with `#` (which is the commenting character for `r`, `python` and `julia` code chunk), followed by two `<` sign.
 
+~~~
 ```{r}
 iris |> #<<
   head(5) 
 ```
+~~~
 
 <img src="example-images/line-highlight05.png" width="600" />
 
 And if both the `source-line-numbers` chunk option and highlight directive is used in a code chunk, only the lines with highlight-directive `#<<` will be highlighted and `source-line-numbers` will not have any effect.
 
+~~~
 ```{r}
 #| source-line-numbers: "2"
 iris |> #<<
   head(5)
 ```
+~~~
 
 <img src="example-images/line-highlight05.png" width="600" />
 
@@ -153,6 +159,7 @@ But this extension uses `#<<` as a highlight directive by default. To use differ
 
 Therefore, for `mermaid` cell, `ht-pattern` should be `%%<<` and for `dot` cell, `ht-pattern` should be `//<<`. Then use these to mark a code line to be highlighted.
 
+~~~
 ```{mermaid}
 %%| echo: true
 %%| ht-pattern: "%%<<"
@@ -162,10 +169,11 @@ flowchart LR
   C --> D[Result one] %%<<
   C --> E[Result two]
 ```
+~~~
 
 <img src="example-images/line-highlight06.png" width="600" />
 
-
+~~~
 ```{dot}
 //| echo: true
 //| ht-pattern: "//<<"
@@ -186,11 +194,13 @@ graph G {
   sleep -- runmem;
 }
 ```
+~~~
 
 <img src="example-images/line-highlight07.png" width="600" />
 
 It is also possible to use `#<<` to highlight lines in syntactically formatted markdown code blocks,
 
+~~~
 ```{.r}
 library(dplyr)
 
@@ -198,14 +208,16 @@ iris |> #<<
   group_by(Species) |> 
   summarize(mean(Sepal.Length)) #<<
 ```
+~~~
 
-
+~~~
 ```{.python .numberLines}
 print("Hello world")
 
 for name in ["Sam", "Jake"]: #<<
     print(f"Hello {name}!")
 ```
+~~~
 
 <img src="example-images/line-highlight08.png" width="600" />
 
